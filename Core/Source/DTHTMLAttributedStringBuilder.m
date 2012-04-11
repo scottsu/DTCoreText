@@ -1078,7 +1078,9 @@
 - (void)parser:(DTHTMLParser *)parser foundCharacters:(NSString *)string
 {
 	dispatch_group_async(_stringAssemblyGroup, _stringAssemblyQueue,^{
-		[self _handleTagContent:string];	
+		// Changed by Scott: trim the whitespaces
+		[self _handleTagContent:[string stringByTrimmingCharactersInSet:
+								 [NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 	});
 }
 
