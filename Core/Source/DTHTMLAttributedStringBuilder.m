@@ -680,6 +680,17 @@
 	};
 	
 	[_tagStartHandlers setObject:[brBlock copy] forKey:@"br"];
+	
+	void (^sourceBlock)(void) = ^
+	{
+		DTTextAttachment * attachment = currentTag.parent.textAttachment;
+		NSString * src = [currentTag attributeForKey:@"src"];
+		if (src) {
+			attachment.contentURL = [NSURL URLWithString:src];
+		}
+	};
+
+	[_tagStartHandlers setObject:[sourceBlock copy] forKey:@"source"];
 }
 
 - (void)_registerTagEndHandlers
@@ -1078,7 +1089,9 @@
 - (void)parser:(DTHTMLParser *)parser foundCharacters:(NSString *)string
 {
 	dispatch_group_async(_stringAssemblyGroup, _stringAssemblyQueue,^{
-		[self _handleTagContent:string];	
+		// Changed by Scott: trim the whitespaces
+		[self _handleTagContent:[string stringByTrimmingCharactersInSet:
+								 [NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 	});
 }
 

@@ -816,6 +816,16 @@
 	[self.children removeObject:child];
 }
 
+- (DTHTMLElement *)childWithTagName:(NSString *)name
+{
+	for (DTHTMLElement * child in self.children) {
+		if ([child.tagName isEqualToString:name]) {
+			return child;
+		}
+	}
+	return nil;
+}
+
 - (DTHTMLElement *)parentWithTagName:(NSString *)name
 {
 	if ([self.parent.tagName isEqualToString:name])

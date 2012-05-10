@@ -77,7 +77,7 @@ typedef enum
 
 - (void)addChild:(DTHTMLElement *)child;
 - (void)removeChild:(DTHTMLElement *)child;
-
+- (DTHTMLElement *)childWithTagName:(NSString *)name;
 - (DTHTMLElement *)parentWithTagName:(NSString *)name;
 - (BOOL)isContainedInBlockElement;
 
