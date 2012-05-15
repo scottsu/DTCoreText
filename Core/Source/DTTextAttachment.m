@@ -97,6 +97,9 @@
 	}
 	else // normal URL
 	{
+		if (![src canBeConvertedToEncoding:NSASCIIStringEncoding]) {
+			src = [src stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		}
 		contentURL = [NSURL URLWithString:src];
 		
 		if (![contentURL scheme])
