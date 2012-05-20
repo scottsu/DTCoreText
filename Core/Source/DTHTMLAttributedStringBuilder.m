@@ -650,12 +650,12 @@
 			currentTag.fontDescriptor.fontFamily = nil; 
 		}
 		
-		NSString *color = [currentTag attributeForKey:@"color"];
-		
-		if (color)
-		{
-			currentTag.textColor = [DTColor colorWithHTMLName:color];       
-		}
+//		NSString *color = [currentTag attributeForKey:@"color"];
+//		
+//		if (color)
+//		{
+//			currentTag.textColor = [DTColor colorWithHTMLName:color];       
+//		}
 	};
 	
 	[_tagStartHandlers setObject:[fontBlock copy] forKey:@"font"];
